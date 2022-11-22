@@ -1,6 +1,8 @@
 import React from "react";
+import { TouchableOpacity } from "react-native";
 import { SettingsScreen } from "../../features/setting/screen/setting.screen";
 import { FavouritesScreen } from "../../features/setting/screen/favourites.screen";
+import { CameraScreen } from "../../features/setting/screen/camera.screen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CardStyleInterpolators } from "@react-navigation/stack";
 
@@ -22,6 +24,7 @@ export const SettingsNavigator = ({ route, navigation }) => {
         component={SettingsScreen}
       />
       <SettingStack.Screen name="Favourites" component={FavouritesScreen} />
+      <SettingStack.Screen name="Camera" component={CameraScreen} />
     </SettingStack.Navigator>
   );
 };
