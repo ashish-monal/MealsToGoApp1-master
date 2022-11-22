@@ -1,21 +1,17 @@
 import React, { useContext, useState } from "react";
 import { Colors } from "react-native-paper";
-import { FlatList, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import { ResturantInfoCard } from "../components/restaurant-info-card.component";
-import styled from "styled-components/native";
+import styled from "styled-components";
 import { Spacer } from "../../components/spacer/spacer.componet";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { RestaurantsContext } from "../../services/restaurants/restaurants.context";
 import { Search } from "../components/search.component";
 import { FavouritesContext } from "../../services/favourites/favourite.context";
 import { FavouritesBar } from "../../components/favourites/favoutites-bar.component";
-
-const RestaurentList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
+import { RestaurentList } from "../components/restaurant-list.style";
+import { FadeInView } from "../../components/animation/fade.animation";
 
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
@@ -28,7 +24,7 @@ left:50%
 `;
 
 export const ResturantsScreen = ({ navigation }) => {
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
   const { favourites } = useContext(FavouritesContext);
   const [isToggled, setIsToggled] = useState(false);
 
@@ -60,7 +56,9 @@ export const ResturantsScreen = ({ navigation }) => {
               }
             >
               <Spacer position="bottom" size="large">
-                <ResturantInfoCard restaurant={item} />
+                <FadeInView>
+                  <ResturantInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );
